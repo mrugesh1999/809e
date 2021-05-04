@@ -85,7 +85,6 @@ def handle_fiducial(msg):
 
             try:  # valid if leader_goal exists
                 current_goal = rospy.get_param("leader_goal")  # where the leader is going
-                print current_goal
                 pose_x = current_goal[0] - 0.8
                 pose_y = current_goal[1]
                 oren_z = current_goal[2]

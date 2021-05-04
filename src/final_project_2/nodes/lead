@@ -31,8 +31,8 @@ def go_to(room):
         x_current = position.x
         y_current = position.y
         w_current = rotation
-        if pose_x - 0.1 < x_current < pose_x + 0.1 and pose_y - 0.1 < y_current < pose_y + 0.1 \
-                and oren_z - 1 < w_current < oren_z + 1:
+        if pose_x - 0.5 < x_current < pose_x + 0.5 and pose_y - 0.5 < y_current < pose_y + 0.5 \
+                and oren_z - 20 < w_current < oren_z + 20:
             break
     print("we are now in the " + room)
     return None
