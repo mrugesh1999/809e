@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/alahr/Documents/College/Spring2021/Python_Applications/809e/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

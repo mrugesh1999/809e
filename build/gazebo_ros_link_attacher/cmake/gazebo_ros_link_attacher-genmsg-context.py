@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = ""
-services_str = "/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/src/gazebo_ros_link_attacher/srv/Attach.srv"
+services_str = "/home/alahr/Documents/College/Spring2021/Python_Applications/809e/src/gazebo_ros_link_attacher/srv/Attach.srv"
 pkg_name = "gazebo_ros_link_attacher"
 dependencies_str = "std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

@@ -67,14 +67,14 @@ set(final_project_2_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(final_project_2_SOURCE_PREFIX /home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/src/final_project_2)
-  set(final_project_2_DEVEL_PREFIX /home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/devel/.private/final_project_2)
+  set(final_project_2_SOURCE_PREFIX /home/alahr/Documents/College/Spring2021/Python_Applications/809e/src/final_project_2)
+  set(final_project_2_DEVEL_PREFIX /home/alahr/Documents/College/Spring2021/Python_Applications/809e/devel/.private/final_project_2)
   set(final_project_2_INSTALL_PREFIX "")
   set(final_project_2_PREFIX ${final_project_2_DEVEL_PREFIX})
 else()
   set(final_project_2_SOURCE_PREFIX "")
   set(final_project_2_DEVEL_PREFIX "")
-  set(final_project_2_INSTALL_PREFIX /home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/install)
+  set(final_project_2_INSTALL_PREFIX /home/alahr/Documents/College/Spring2021/Python_Applications/809e/install)
   set(final_project_2_PREFIX ${final_project_2_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/install/lib;/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/alahr/Documents/College/Spring2021/Python_Applications/809e/install/lib;/home/alahr/Documents/College/Spring2021/Python_Applications/809e/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

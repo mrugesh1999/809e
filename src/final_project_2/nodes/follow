@@ -9,40 +9,16 @@ import tf
 from fiducial_msgs.msg import FiducialTransformArray
 
 
-rospy.set_param('goal_x', 0)
-rospy.set_param('goal_y', 0)
-rospy.set_param('goal_w', 1)
-
-
-def publish_on_move_base():
+def go_to_goal(pose_x, pose_y, oren_z):
     # Build message
-    message.header.stamp = rospy.Time.now()
-    message.pose.position.x = rospy.get_param('goal_x')
-    message.pose.position.y = rospy.get_param('goal_y')
-    message.pose.orientation.w = rospy.get_param('goal_w')
+    message.header.stamp = rospy.Time(0)
+    message.pose.position.x = pose_x
+    message.pose.position.y = pose_y
+    message.pose.position.z = 0
+    message.pose.orientation.w = oren_z
 
     # Publish message
     pub_goal.publish(message)
-
-# def get_odom_data():
-#     """Get the current pose of the robot from the /odom topic
-#
-#     Return
-#     ----------
-#     The position (x, y, z) and the yaw of the robot.
-#     """
-#     success = False
-#     while not success:
-#         try:
-#             tf_listener.waitForTransform('follower_tf/odom', 'follower_tf/base_footprint', rospy.Time.now(), rospy.Duration(4.0))
-#             (trans, rot) = tf_listener.lookupTransform('follower_tf/odom', 'follower_tf/base_footprint', rospy.Time.now())
-#             # rotation is a list [r, p, y]
-#             rotation = tf.transformations.euler_from_quaternion(rot)
-#             success = True
-#         except (tf.Exception, tf.ConnectivityException, tf.LookupException):
-#             pass
-#     # return the yaw
-#     return rotation[2]
 
 
 def handle_fiducial(msg):
@@ -61,31 +37,36 @@ def handle_fiducial(msg):
             search[0] = False  # mark as not searching
             search[2] = False  # mark as rotation not found
             velocity_msg.angular.z = 0  # stop rotation
-            pub_cmd_vel.publish(velocity_msg)  # publish to follower/cmd_vel
+            for i in range(100):
+                pub_cmd_vel.publish(velocity_msg)  # publish to follower/cmd_vel
+                rospy.Rate(0.01)
+            return
 
-        # marker_tf_cam = marker_data[0].transform
-        # rospy.loginfo(marker_tf_cam)
-        # trn = marker_tf_cam.translation
-        # rot = marker_tf_cam.rotation
-
+        marker_tf_cam = marker_data[0].transform
+        trn = marker_tf_cam.translation
+        rot = marker_tf_cam.rotation
 
         # broadcast follower_tf/camera_rgb_optical_frame to tf transforms
-        # br.sendTransform((trn.x, trn.y, 0),
-        #                  (rot.x, rot.y, rot.z, rot.w),
-        #                  rospy.Time.now(),
-        #                  "follower_tf/camera_rgb_optical_frame",
-        #                  "follower_tf/camera_link")
-        #
-        # try:  # often throws error for first time looking up, ignore this
-        #     marker_tf = tf_listener.lookupTransform("follower_tf/camera_rgb_optical_frame", "map", rospy.Time.now())
-        # except:
-        #     return
-        # (x, y, z) = marker_tf[0]
-        # (roll, pitch, yaw) = tf.transformations.euler_from_quaternion(marker_tf[1])
-        # pose = (x, y, yaw)
-        # rospy.loginfo(marker_tf)
+        # trn.z - XX  to make follow by distance of
+        br.sendTransform((trn.x, trn.y, trn.z-0.7),
+                         (rot.x, rot.y, rot.z, rot.w),
+                         rospy.Time.now(),
+                         "follower_tf/marker_goal",
+                         "follower_tf/camera_rgb_optical_frame")
+
+        try:  # often throws error for first time looking up, ignore this
+            tf_listener.waitForTransform("map", "follower_tf/marker_goal", rospy.Time(0), rospy.Duration(1))
+            marker_tf = tf_listener.lookupTransform("map", "follower_tf/marker_goal", rospy.Time(0))
+            pose_x = marker_tf[0][0]
+            pose_y = marker_tf[0][1]
+            oren_z = marker_tf[1][3]
+            go_to_goal(pose_x, pose_y, oren_z)
+        except (tf.Exception, tf.ConnectivityException, tf.LookupException):
+            # print "\tCannot find transform between follower_tf/marker_goal and map"
+            return
 
     else:  # marker not found
+        pass
         # starting search, record initial angle
         if not search[0]:
             search[1] = 0  # save angle
@@ -101,17 +82,27 @@ def handle_fiducial(msg):
             search[2] = True  # mark full rotation as complete
             velocity_msg.angular.z = 0  # stop rotation
             pub_cmd_vel.publish(velocity_msg)  # publish to follower/cmd_vel
-            publish_on_move_base()
+
+            try:  # valid if leader_goal exists
+                current_goal = rospy.get_param("leader_goal")  # where the leader is going
+                print current_goal
+                pose_x = current_goal[0] - 0.8
+                pose_y = current_goal[1]
+                oren_z = current_goal[2]
+                go_to_goal(pose_x, pose_y, oren_z)
+            except:
+                return
+
             rospy.Rate(0.5).sleep()
 
         # haven't completed a full rotation yet
-        if not search[2]:
+        elif not search[2]:
             if state != 'searching':
                 rospy.loginfo("Looking for marker: rotating")
                 state = 'searching'
 
-            velocity_msg.angular.z = 2
-            search[1] += 5.2  # ~# of degrees per 0.35 seconds at angular vel 0f 2
+            velocity_msg.angular.z = 1.2
+            search[1] += 3.  # ~# of degrees per 0.35 seconds at angular vel 0f 2
             pub_cmd_vel.publish(velocity_msg)
             rospy.Rate(0.1)
 

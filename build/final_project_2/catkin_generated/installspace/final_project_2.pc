@@ -1,4 +1,4 @@
-prefix=/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/install
+prefix=/home/alahr/Documents/College/Spring2021/Python_Applications/809e/install
 
 Name: final_project_2
 Description: Description of final_project_2

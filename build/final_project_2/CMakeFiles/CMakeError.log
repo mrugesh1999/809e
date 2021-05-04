@@ -1,24 +1,24 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/final_project_2/CMakeFiles/CMakeTmp
+Change Dir: /home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/final_project_2/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_dbada/fast"
-/usr/bin/make -f CMakeFiles/cmTC_dbada.dir/build.make CMakeFiles/cmTC_dbada.dir/build
-make[1]: Entering directory '/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/final_project_2/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_dbada.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_dbada.dir/CheckSymbolExists.c.o   -c /home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/final_project_2/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_dbada
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dbada.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_dbada.dir/CheckSymbolExists.c.o  -o cmTC_dbada 
-CMakeFiles/cmTC_dbada.dir/CheckSymbolExists.c.o: In function `main':
+Run Build Command:"/usr/bin/make" "cmTC_f6815/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f6815.dir/build.make CMakeFiles/cmTC_f6815.dir/build
+make[1]: Entering directory '/home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/final_project_2/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f6815.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_f6815.dir/CheckSymbolExists.c.o   -c /home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/final_project_2/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_f6815
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f6815.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_f6815.dir/CheckSymbolExists.c.o  -o cmTC_f6815 
+CMakeFiles/cmTC_f6815.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_dbada.dir/build.make:97: recipe for target 'cmTC_dbada' failed
-make[1]: *** [cmTC_dbada] Error 1
-make[1]: Leaving directory '/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/final_project_2/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_dbada/fast' failed
-make: *** [cmTC_dbada/fast] Error 2
+CMakeFiles/cmTC_f6815.dir/build.make:97: recipe for target 'cmTC_f6815' failed
+make[1]: *** [cmTC_f6815] Error 1
+make[1]: Leaving directory '/home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/final_project_2/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_f6815/fast' failed
+make: *** [cmTC_f6815/fast] Error 2
 
-File /home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/final_project_2/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/final_project_2/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -34,22 +34,22 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/final_project_2/CMakeFiles/CMakeTmp
+Change Dir: /home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/final_project_2/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_bd2b0/fast"
-/usr/bin/make -f CMakeFiles/cmTC_bd2b0.dir/build.make CMakeFiles/cmTC_bd2b0.dir/build
-make[1]: Entering directory '/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/final_project_2/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_bd2b0.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_bd2b0.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
-Linking C executable cmTC_bd2b0
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bd2b0.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_bd2b0.dir/CheckFunctionExists.c.o  -o cmTC_bd2b0 -lpthreads 
+Run Build Command:"/usr/bin/make" "cmTC_7a507/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7a507.dir/build.make CMakeFiles/cmTC_7a507.dir/build
+make[1]: Entering directory '/home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/final_project_2/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7a507.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_7a507.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_7a507
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7a507.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_7a507.dir/CheckFunctionExists.c.o  -o cmTC_7a507 -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_bd2b0.dir/build.make:97: recipe for target 'cmTC_bd2b0' failed
-make[1]: *** [cmTC_bd2b0] Error 1
-make[1]: Leaving directory '/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/final_project_2/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_bd2b0/fast' failed
-make: *** [cmTC_bd2b0/fast] Error 2
+CMakeFiles/cmTC_7a507.dir/build.make:97: recipe for target 'cmTC_7a507' failed
+make[1]: *** [cmTC_7a507] Error 1
+make[1]: Leaving directory '/home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/final_project_2/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_7a507/fast' failed
+make: *** [cmTC_7a507/fast] Error 2
 
 

@@ -1,24 +1,24 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp
+Change Dir: /home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_3eb8d/fast"
-/usr/bin/make -f CMakeFiles/cmTC_3eb8d.dir/build.make CMakeFiles/cmTC_3eb8d.dir/build
-make[1]: Entering directory '/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_3eb8d.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_3eb8d.dir/CheckSymbolExists.c.o   -c /home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_3eb8d
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3eb8d.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_3eb8d.dir/CheckSymbolExists.c.o  -o cmTC_3eb8d 
-CMakeFiles/cmTC_3eb8d.dir/CheckSymbolExists.c.o: In function `main':
+Run Build Command:"/usr/bin/make" "cmTC_fdf31/fast"
+/usr/bin/make -f CMakeFiles/cmTC_fdf31.dir/build.make CMakeFiles/cmTC_fdf31.dir/build
+make[1]: Entering directory '/home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_fdf31.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_fdf31.dir/CheckSymbolExists.c.o   -c /home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_fdf31
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fdf31.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_fdf31.dir/CheckSymbolExists.c.o  -o cmTC_fdf31 
+CMakeFiles/cmTC_fdf31.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_3eb8d.dir/build.make:97: recipe for target 'cmTC_3eb8d' failed
-make[1]: *** [cmTC_3eb8d] Error 1
-make[1]: Leaving directory '/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_3eb8d/fast' failed
-make: *** [cmTC_3eb8d/fast] Error 2
+CMakeFiles/cmTC_fdf31.dir/build.make:97: recipe for target 'cmTC_fdf31' failed
+make[1]: *** [cmTC_fdf31] Error 1
+make[1]: Leaving directory '/home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_fdf31/fast' failed
+make: *** [cmTC_fdf31/fast] Error 2
 
-File /home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -34,22 +34,22 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp
+Change Dir: /home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a2bdc/fast"
-/usr/bin/make -f CMakeFiles/cmTC_a2bdc.dir/build.make CMakeFiles/cmTC_a2bdc.dir/build
-make[1]: Entering directory '/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_a2bdc.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_a2bdc.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
-Linking C executable cmTC_a2bdc
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2bdc.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_a2bdc.dir/CheckFunctionExists.c.o  -o cmTC_a2bdc -lpthreads 
+Run Build Command:"/usr/bin/make" "cmTC_dc8cd/fast"
+/usr/bin/make -f CMakeFiles/cmTC_dc8cd.dir/build.make CMakeFiles/cmTC_dc8cd.dir/build
+make[1]: Entering directory '/home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_dc8cd.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_dc8cd.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_dc8cd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dc8cd.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_dc8cd.dir/CheckFunctionExists.c.o  -o cmTC_dc8cd -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_a2bdc.dir/build.make:97: recipe for target 'cmTC_a2bdc' failed
-make[1]: *** [cmTC_a2bdc] Error 1
-make[1]: Leaving directory '/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_a2bdc/fast' failed
-make: *** [cmTC_a2bdc/fast] Error 2
+CMakeFiles/cmTC_dc8cd.dir/build.make:97: recipe for target 'cmTC_dc8cd' failed
+make[1]: *** [cmTC_dc8cd] Error 1
+make[1]: Leaving directory '/home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/gazebo_ros_link_attacher/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_dc8cd/fast' failed
+make: *** [cmTC_dc8cd/fast] Error 2
 
 

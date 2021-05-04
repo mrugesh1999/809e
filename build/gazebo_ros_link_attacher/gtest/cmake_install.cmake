@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/alahr/Documents/College/Spring2021/Python_Applications/809e/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/gazebo_ros_link_attacher/gtest/googlemock/cmake_install.cmake")
+  include("/home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/gazebo_ros_link_attacher/gtest/googlemock/cmake_install.cmake")
 
 endif()
 

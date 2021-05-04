@@ -7,10 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH='/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/devel/.private/catkin_tools_prebuild:/opt/ros/melodic'
-export LD_LIBRARY_PATH='/opt/ros/melodic/lib'
-export PKG_CONFIG_PATH='/opt/ros/melodic/lib/pkgconfig'
-export PWD='/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/catkin_tools_prebuild'
-export PYTHONPATH='/opt/ros/melodic/lib/python2.7/dist-packages'
-export ROSLISP_PACKAGE_DIRECTORIES='/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/devel/.private/catkin_tools_prebuild/share/common-lisp'
-export ROS_PACKAGE_PATH='/home/alahr/Documents/College/Spring2021/Python_Applications/rwa4_ws/build/catkin_tools_prebuild:/opt/ros/melodic/share'
+export CMAKE_PREFIX_PATH="/home/alahr/Documents/College/Spring2021/Python_Applications/809e/devel/.private/catkin_tools_prebuild:$CMAKE_PREFIX_PATH"
+export PWD='/home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/catkin_tools_prebuild'
+export ROSLISP_PACKAGE_DIRECTORIES='/home/alahr/Documents/College/Spring2021/Python_Applications/809e/devel/.private/catkin_tools_prebuild/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/alahr/Documents/College/Spring2021/Python_Applications/809e/build/catkin_tools_prebuild:$ROS_PACKAGE_PATH"

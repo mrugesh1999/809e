@@ -55,7 +55,7 @@ def yaml_loader(filepath):
 
 
 if __name__ == '__main__':
-    filepath = "/home/zeus/catkin_ws/src/final_project_x/yaml/room_record.yaml"
+    filepath = "/home/alahr/Documents/College/Spring2021/Python_Applications/809e/src/final_project_2/yaml/room_record.yaml"
     data = yaml_loader(filepath)
     pub = rospy.Publisher("/leader/move_base_simple/goal", PoseStamped, queue_size=10)
 
@@ -68,6 +68,8 @@ if __name__ == '__main__':
         rospy.loginfo(
             "Cannot find transform between {p} and {c}".format(p='/leader_tf/odom', c='/leader_tf/base_footprint'))
         rospy.signal_shutdown("tf Exception")
+
+    rospy.Rate(5)
 
     while not rospy.is_shutdown():
         go_to("livingroom")
