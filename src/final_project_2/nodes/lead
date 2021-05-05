@@ -9,6 +9,10 @@ from geometry_msgs.msg import Point
 
 
 def go_to(room):
+    """Moves the leader turtlebot to a prespecified location within a room in small_house_map
+
+    room: a string representing which room to go to
+    """
     message = PoseStamped()
     pose_x = data[room]["position"][0]
     pose_x = float(pose_x[2:])
@@ -39,6 +43,10 @@ def go_to(room):
 
 
 def pose():
+    """Gets the leader turtlebot's current pose using a transform between odom and base_footprint
+
+    return: the current position and orientation of the leader turtlebot
+    """
     try:
         (trans, rot) = tf_listener.lookupTransform('/leader_tf/odom', '/leader_tf/base_footprint', rospy.Time(0))
         rotation = euler_from_quaternion(rot)
@@ -49,12 +57,19 @@ def pose():
 
 
 def yaml_loader(filepath):
+    """Gets the data contained in the room_record yaml file to enable leader turtlebot motion
+
+    filepath: the whole path to the yaml file and its directory
+
+    return: the data contained in a yaml file
+    """
     with open(filepath, 'r') as file_descriptor:
         data = yaml.load(file_descriptor)
     return data
 
 
 if __name__ == '__main__':
+    # NOTE FILEPATH IS UNIQUE TO EACH USER!
     filepath = "/home/alahr/Documents/College/Spring2021/Python_Applications/809e/src/final_project_2/yaml/room_record.yaml"
     data = yaml_loader(filepath)
     pub = rospy.Publisher("/leader/move_base_simple/goal", PoseStamped, queue_size=10)

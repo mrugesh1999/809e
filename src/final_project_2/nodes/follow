@@ -10,6 +10,12 @@ from fiducial_msgs.msg import FiducialTransformArray
 
 
 def go_to_goal(pose_x, pose_y, oren_z):
+    """Move the follower turtlebot to a position / orientation in small_house_map
+
+    pose_x: represents the x position in the map to go to
+    pose_y: represents the y position in the map to go to
+    oren_z: represents the yaw in the map to go face
+    """
     # Build message
     message.header.stamp = rospy.Time(0)
     message.pose.position.x = pose_x
@@ -22,6 +28,10 @@ def go_to_goal(pose_x, pose_y, oren_z):
 
 
 def handle_fiducial(msg):
+    """Moves the follower turtlebot to either follow / search for the fiducial
+
+    msg: FiducialTransformArray
+    """
     marker_data = msg.transforms
     global search
     global state
@@ -37,17 +47,16 @@ def handle_fiducial(msg):
             search[0] = False  # mark as not searching
             search[2] = False  # mark as rotation not found
             velocity_msg.angular.z = 0  # stop rotation
-            for i in range(100):
-                pub_cmd_vel.publish(velocity_msg)  # publish to follower/cmd_vel
-                rospy.Rate(0.01)
-            return
+            pub_cmd_vel.publish(velocity_msg)  # publish to follower/cmd_vel
+            rospy.Rate(0.5)  # wait a moment to make sure robot stops
+            pub_cmd_vel.publish(velocity_msg)  # publish to follower/cmd_vel
 
         marker_tf_cam = marker_data[0].transform
         trn = marker_tf_cam.translation
         rot = marker_tf_cam.rotation
 
         # broadcast follower_tf/camera_rgb_optical_frame to tf transforms
-        # trn.z - XX  to make follow by distance of
+        # trn.z - XX  to make follow at a distance of XX
         br.sendTransform((trn.x, trn.y, trn.z-0.7),
                          (rot.x, rot.y, rot.z, rot.w),
                          rospy.Time.now(),
