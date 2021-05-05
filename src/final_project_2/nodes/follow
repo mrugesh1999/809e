@@ -1,0 +1,144 @@
+#!/usr/bin/env python
+
+
+import rospy
+import actionlib
+from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from geometry_msgs.msg import PoseStamped, Twist
+import tf
+from fiducial_msgs.msg import FiducialTransformArray
+
+
+def go_to_goal(pose_x, pose_y, oren_z):
+    """Move the follower turtlebot to a position / orientation in small_house_map
+
+    pose_x: represents the x position in the map to go to
+    pose_y: represents the y position in the map to go to
+    oren_z: represents the yaw in the map to go face
+    """
+    # Build message
+    message.header.stamp = rospy.Time(0)
+    message.pose.position.x = pose_x
+    message.pose.position.y = pose_y
+    message.pose.position.z = 0
+    message.pose.orientation.w = oren_z
+
+    # Publish message
+    pub_goal.publish(message)
+
+
+def handle_fiducial(msg):
+    """Moves the follower turtlebot to either follow / search for the fiducial
+
+    msg: FiducialTransformArray
+    """
+    marker_data = msg.transforms
+    global search
+    global state
+
+    if marker_data:  # found fiducial marker
+        if state != 'following':
+            rospy.loginfo("Following marker")
+            state = 'following'
+
+        # stop the robot first if have been searching
+        if search[0]:
+            rospy.loginfo("Marker found")
+            search[0] = False  # mark as not searching
+            search[2] = False  # mark as rotation not found
+            velocity_msg.angular.z = 0  # stop rotation
+            pub_cmd_vel.publish(velocity_msg)  # publish to follower/cmd_vel
+            rospy.Rate(0.5)  # wait a moment to make sure robot stops
+            pub_cmd_vel.publish(velocity_msg)  # publish to follower/cmd_vel
+
+        marker_tf_cam = marker_data[0].transform
+        trn = marker_tf_cam.translation
+        rot = marker_tf_cam.rotation
+
+        # broadcast follower_tf/camera_rgb_optical_frame to tf transforms
+        # trn.z - XX  to make follow at a distance of XX
+        br.sendTransform((trn.x, trn.y, trn.z-0.7),
+                         (rot.x, rot.y, rot.z, rot.w),
+                         rospy.Time.now(),
+                         "follower_tf/marker_goal",
+                         "follower_tf/camera_rgb_optical_frame")
+
+        try:  # often throws error for first time looking up, ignore this
+            tf_listener.waitForTransform("map", "follower_tf/marker_goal", rospy.Time(0), rospy.Duration(1))
+            marker_tf = tf_listener.lookupTransform("map", "follower_tf/marker_goal", rospy.Time(0))
+            pose_x = marker_tf[0][0]
+            pose_y = marker_tf[0][1]
+            oren_z = marker_tf[1][3]
+            go_to_goal(pose_x, pose_y, oren_z)
+        except (tf.Exception, tf.ConnectivityException, tf.LookupException):
+            # print "\tCannot find transform between follower_tf/marker_goal and map"
+            return
+
+    else:  # marker not found
+        pass
+        # starting search, record initial angle
+        if not search[0]:
+            search[1] = 0  # save angle
+            search[2] = False  # mark that full rotation not complete
+            search[0] = True  # mark that in the process of searching
+
+        # check if full rotation complete
+        if search[1] > 360:
+            if state != 'exploring':
+                rospy.loginfo("Looking for marker: exploring")
+                state = 'exploring'
+
+            search[2] = True  # mark full rotation as complete
+            velocity_msg.angular.z = 0  # stop rotation
+            pub_cmd_vel.publish(velocity_msg)  # publish to follower/cmd_vel
+
+            try:  # valid if leader_goal exists
+                current_goal = rospy.get_param("leader_goal")  # where the leader is going
+                pose_x = current_goal[0] - 0.8
+                pose_y = current_goal[1]
+                oren_z = current_goal[2]
+                go_to_goal(pose_x, pose_y, oren_z)
+            except:
+                return
+
+            rospy.Rate(0.5).sleep()
+
+        # haven't completed a full rotation yet
+        elif not search[2]:
+            if state != 'searching':
+                rospy.loginfo("Looking for marker: rotating")
+                state = 'searching'
+
+            velocity_msg.angular.z = 1.2
+            search[1] += 3.  # ~# of degrees per 0.35 seconds at angular vel 0f 2
+            pub_cmd_vel.publish(velocity_msg)
+            rospy.Rate(0.1)
+
+    rospy.Rate(0.25)
+
+
+if __name__ == '__main__':
+    rospy.init_node('follow_leader')
+
+    # setup tf stuff
+    tf_listener = tf.TransformListener()
+    br = tf.TransformBroadcaster()
+
+    # setup searching stuff
+    pub_cmd_vel = rospy.Publisher("/follower/cmd_vel", Twist, queue_size=5)
+    velocity_msg = Twist()
+
+    # setup move to goal stuff
+    pub_goal = rospy.Publisher("/follower/move_base_simple/goal", PoseStamped, queue_size=10)
+    message = PoseStamped()
+    message.header.frame_id = "map"
+    message.pose.position.z = 0
+
+    # setup state tracking
+    search = [False, 0, False]  # [bool of if searching, odom angle started searching at, bool of if loop completed]
+    state = None  # stores the state follower robot to limit loginfo
+
+    # start main
+    rospy.Subscriber("fiducial_transforms", FiducialTransformArray, handle_fiducial)
+    rospy.spin()
+

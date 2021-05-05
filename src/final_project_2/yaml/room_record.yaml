@@ -1,0 +1,36 @@
+livingroom:
+  position:
+  - x:1.1663133541
+  - y:-0.325852862994
+  - z:0.0
+  orientation:
+  - x:0.0
+  - y:0.0
+  - z:-0.99935703473
+recreationroom:
+  position:
+  - x:1.38705508425
+  - y:4.06682545214
+  - z:0.0
+  orientation:
+  - x:0.0
+  - y:0.0
+  - z:0.776142781151
+kitchen:
+  position:
+  - x:6.56578958816
+  - y:-1.46298083743
+  - z:0.0
+  orientation:
+  - x:0.0
+  - y:0.0
+  - z:-0.43905557981
+bedroom:
+  position:
+  - x:-5.92626649625
+  - y:-0.766932751925
+  - z:0.0
+  orientation:
+  - x:0.0
+  - y:0.0
+  - z:-0.924994959201
