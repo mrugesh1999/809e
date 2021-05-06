@@ -165,6 +165,7 @@ include_directories(
 install(
   PROGRAMS
     nodes/spawn_marker_on_robot
-    nodes/move_base_example
+    nodes/lead
+    nodes/follower.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
